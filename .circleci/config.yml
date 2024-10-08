@@ -1,5 +1,28 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.9.3
 jobs:
+  notify:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
   build_tests:
     docker:
       - image: circleci/node:12
@@ -25,29 +48,12 @@ jobs:
           command: |
             echo $DOCKER_PASSWORD | docker login -u anjalisoni12 --password-stdin
             docker push anjalisoni12/nodewebapp:latest
-      - slack_notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
 
 workflows:
   build_test:
     jobs:
       - build_tests
       - build_docker_test
-      - slack_notify
+      - notify
 
 
