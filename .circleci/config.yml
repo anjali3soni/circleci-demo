@@ -54,7 +54,7 @@ workflows:
     jobs:
       - build_tests
       - build_docker_test
-      - notify
+      - notify:
           requires:
             - build_tests
             - build_docker_test
