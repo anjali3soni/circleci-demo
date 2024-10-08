@@ -25,11 +25,29 @@ jobs:
           command: |
             echo $DOCKER_PASSWORD | docker login -u anjalisoni12 --password-stdin
             docker push anjalisoni12/nodewebapp:latest
+      - slack_notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
 
 workflows:
   build_test:
     jobs:
       - build_tests
       - build_docker_test
+      - slack_notify
 
 
