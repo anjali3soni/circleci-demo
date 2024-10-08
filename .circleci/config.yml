@@ -20,7 +20,10 @@ jobs:
           name: Build docker image
           command: |
             docker build -t nodewebapp -t anjalisoni12/nodewebapp:latest .
-            echno $DOCKER_PASSWORD | docker login -u anjalisoni12 --password-stdin
+      - run:
+          name: Docker login and push
+          command: |
+            echo $DOCKER_PASSWORD | docker login -u anjalisoni12 --password-stdin
             docker push anjalisoni12/nodewebapp:latest
 
 workflows:
