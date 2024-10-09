@@ -15,7 +15,7 @@ jobs:
                   "fields": [
                     {
                       "type": "plain_text",
-                      "text": "*This is a text notification*",
+                      "text": "The image is pushed to docker hub",
                       "emoji": true
                     }
                   ]
