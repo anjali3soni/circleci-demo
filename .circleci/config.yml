@@ -46,11 +46,20 @@ jobs:
             echo $DOCKER_PASSWORD | docker login -u anjalisoni12 --password-stdin
             docker push anjalisoni12/nodewebapp:latest
 
+  build:
+    docker:
+      - image: cimg/base:current
+    resource_class: anjali3soni/test-resourceclass
+    steps:
+      - run: echo "Hi I'm on a Container Runner!"
+
+
 workflows:
   build_test:
     jobs:
       - build_tests
       - build_docker_test
+      - build
       - notify:
           requires:
             - build_tests
