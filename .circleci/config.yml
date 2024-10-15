@@ -19,7 +19,7 @@ jobs:
                 }
               ]
             }
-          event: always
+          event: fail
 
   build_tests:
     docker:
@@ -44,12 +44,12 @@ jobs:
             echo $DOCKER_PASSWORD | docker login -u anjalisoni12 --password-stdin
             docker push anjalisoni12/nodewebapp:latest
 
-  build:
-    docker:
-      - image: cimg/base:current
-    resource_class: anjali3soni/test-resourceclass
-    steps:
-      - run: echo "Hi I'm on a Container Runner!"
+  # build:
+  #   docker:
+  #     - image: cimg/base:current
+  #   resource_class: anjali3soni/test-resourceclass
+  #   steps:
+  #     - run: echo "Hi I'm on a Container Runner!"
 
 
 workflows:
@@ -57,7 +57,7 @@ workflows:
     jobs:
       - build_tests
       - build_docker_test
-      - build
+      # - build
       - notify:
           requires:
             - build_tests
