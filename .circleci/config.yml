@@ -17,7 +17,7 @@ jobs:
                         "color": "#FF0000",
                         "pretext": "Notification From CircleCI",
                         "title": "Dnatur Mobile Build Failed",
-                        "text": "Branch: '"$branch_name"' \nBuild Number: '"$build_number"'",
+                        "text": "Hello",
                         "footer": "Dnatur"
                     }
                   ]
