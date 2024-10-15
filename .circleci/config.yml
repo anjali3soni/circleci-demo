@@ -19,7 +19,7 @@ jobs:
                 }
               ]
             }
-          event: always
+          event: fail
 
   build_tests:
     docker:
