@@ -14,15 +14,17 @@ jobs:
                   "type": "section",
                   "fields": [
                     {
-                      "type": "plain_text",
-                      "text": "The image is pushed to docker hub",
-                      "emoji": true
+                        "color": "#FF0000",
+                        "pretext": "Notification From CircleCI",
+                        "title": "Dnatur Mobile Build Failed",
+                        "text": "Branch: '"$branch_name"' \nBuild Number: '"$build_number"'",
+                        "footer": "Dnatur"
                     }
                   ]
                 }
               ]
             }
-          event: always
+          event: always   
   build_tests:
     docker:
       - image: circleci/node:12
