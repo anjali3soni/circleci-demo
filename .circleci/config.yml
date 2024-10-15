@@ -9,22 +9,18 @@ jobs:
       - slack/notify:
           custom: |
             {
-              "blocks": [
+              "attachments": [
                 {
-                  "type": "section",
-                  "fields": [
-                    {
-                        "color": "#FF0000",
-                        "pretext": "Notification From CircleCI",
-                        "title": "Dnatur Mobile Build Failed",
-                        "text": "Hello",
-                        "footer": "Dnatur"
-                    }
-                  ]
+                  "color": "#FF0000",
+                  "pretext": "Notification From CircleCI",
+                  "title": "Dnatur Mobile Build Failed",
+                  "text": "Hello",
+                  "footer": "Dnatur"
                 }
               ]
             }
-          event: always   
+          event: always
+
   build_tests:
     docker:
       - image: circleci/node:12
